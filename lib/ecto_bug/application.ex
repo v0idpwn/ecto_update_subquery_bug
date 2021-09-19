@@ -8,7 +8,8 @@ defmodule EctoBug.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      {EctoBug.Repo, []}
+      {EctoBug.Repo, []},
+      {EctoBug.MySQLRepo, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -24,7 +24,8 @@ defmodule EctoBug.MixProject do
     [
       {:ecto_sql, path: "../ecto_sql", override: true},
       {:ecto, path: "../ecto", override: true},
-      {:postgrex, path: "../postgrex", override: true}
+      {:postgrex, path: "../postgrex", override: true},
+      {:myxql, path: "../myxql", override: true}
     ]
   end
 end

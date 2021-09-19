@@ -3,10 +3,19 @@ defmodule EctoBug do
 
   import Ecto.Query
 
-  alias EctoBug.Repo
+  def psql do
+    setup(EctoBug.Repo)
+    do_bug(EctoBug.Repo)
+  end
 
-  def setup do
-    Repo.insert_all(MySchema, [
+  def mysql do
+    setup(EctoBug.MySQLRepo)
+    do_bug(EctoBug.MySQLRepo)
+  end
+
+  defp setup(repo) do
+    repo.delete_all(MySchema)
+    repo.insert_all(MySchema, [
       %{title: "sample", view_count: 1},
       %{title: "sample", view_count: 2},
       %{title: "sample", view_count: 3},
@@ -16,7 +25,7 @@ defmodule EctoBug do
     ])
   end
 
-  def do_bug do
+  defp do_bug(repo) do
     title = "sample"
     view_count = 3
     zero = 0
@@ -29,7 +38,7 @@ defmodule EctoBug do
         limit: 1
       )
 
-    Repo.update_all(
+    repo.update_all(
       from(
         ms in MySchema,
         join: ms2 in subquery(update_query),

@@ -1,5 +1,12 @@
 import Config
 
+config :ecto_bug, EctoBug.MySQLRepo,
+  database: "ecto_bug_my_sql_repo",
+  username: "root",
+  password: "pass",
+  hostname: "localhost",
+  priv: "priv/repo"
+
 config :ecto_bug, EctoBug.Repo,
   database: "ecto_bug_repo",
   username: "postgres",
@@ -7,4 +14,4 @@ config :ecto_bug, EctoBug.Repo,
   hostname: "localhost"
 
 config :ecto_bug,
-  ecto_repos: [EctoBug.Repo]
+  ecto_repos: [EctoBug.Repo, EctoBug.MySQLRepo]
